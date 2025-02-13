@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Renderer</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+</head>
+<body>
+    <h2>Markdown Preview</h2>
+    
+    <textarea id="markdown-input" rows="5" cols="50"> **Bold Text** _Italic Text_ [Google](https://google.com)</textarea>
+    <br>
+    <button onclick="renderMarkdown()">Render Markdown</button>
+    
+    <h3>Output:</h3>
+    <div id="output" style="border: 1px solid #ddd; padding: 10px;"></div>
+
+    <script>
+        function renderMarkdown() {
+            const markdownText = document.getElementById("markdown-input").value;
+            const parsedHTML = DOMPurify.sanitize(marked.parse(markdownText));
+            document.getElementById("output").innerHTML = parsedHTML;
+        }
+    </script>
+</body>
+</html>
